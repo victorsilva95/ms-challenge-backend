@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+  ### MySQL Container
+  mysql:
+    restart: always
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: cash
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - bubble
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 20s
+      retries: 5
+
+  ms-challenge-backend:
+    container_name: ms-challenge-backend-container
+    hostname: ms-challenge-backend
+    image: ms-challenge-backend-image
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bubble
+    environment:
+      MS_CHALLENGE_BACKEND_DB_USER: root
+      MS_CHALLENGE_BACKEND_DB_PASSWORD: root
+      MS_CHALLENGE_BACKEND_DB_URL: mysql:3306/cash?autoReconnect=true
+
+networks:
+  bubble:
+    driver: bridge
+
+volumes:
+  mysql:
+    driver: local

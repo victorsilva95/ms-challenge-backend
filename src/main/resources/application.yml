@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ms-challenge-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MS_CHALLENGE_BACKEND_DB_USER}
+    password: ${MS_CHALLENGE_BACKEND_DB_PASSWORD}
+    url: jdbc:mysql://${MS_CHALLENGE_BACKEND_DB_URL}
+
+server:
+  port: ${MS_CHALLENGE_BACKEND_PORT:8080}

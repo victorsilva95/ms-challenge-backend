@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ms-challenge-backend
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    url: jdbc:h2:mem:cash;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL;NON_KEYWORDS=VALUE
+  flyway:
+    locations: "db/test/migration"
+server:
+  port: ${MS_CHALLENGE_BACKEND_PORT:8080}
