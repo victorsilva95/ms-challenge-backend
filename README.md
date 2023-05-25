@@ -1,5 +1,7 @@
 # ms-challenge-backend
 
+![Image Caption](desenho-desafio.drawio.png)
+
 ## Sobre
 
 Microserviço relacionado a um desafio técnico da empresa Opah IT, que possui dois endpints, um POST para cadastro de
