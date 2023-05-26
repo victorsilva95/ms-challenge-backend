@@ -40,7 +40,7 @@ mvn clean install
 ```
 
 ```
-java -jar target/ms-challenge-backend-0.0.1-SNAPSHOT.jar
+java -DMS_CHALLENGE_BACKEND_DB_USER=your_user -DMS_CHALLENGE_BACKEND_DB_PASSWORD=your_password -DMS_CHALLENGE_BACKEND_DB_URL=your_url -jar target/ms-challenge-backend-0.0.1-SNAPSHOT.jar
 ```
 
 ## Serviços
